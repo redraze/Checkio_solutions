@@ -1,0 +1,6 @@
+def checkio(number):
+    n = 1
+    for num in str(number):
+        if int(num) > 0:
+            n *= int(num)
+    return n
