@@ -1,0 +1,31 @@
+def recall_password(cipher_grille, ciphered_password):
+    code = ""
+                #       first iteration        #
+    for x, row in enumerate(cipher_grille):
+        for y, char in enumerate(row):
+            if char == "X":
+                code += ciphered_password[x][y]
+                #       second iteration       #
+    p = cipher_grille
+    bits = zip(p[::-1][0], p[::-1][1], p[::-1][2], p[::-1][3])
+    grille = ((bits[0][0] + bits[0][1] + bits[0][2] + bits[0][3]), (bits[1][0] + bits[1][1] + bits[1][2] + bits[1][3]), (bits[2][0] + bits[2][1] + bits[2][2] + bits[2][3]), (bits[3][0] + bits[3][1] + bits[3][2] + bits[3][3]))
+    for x, row in enumerate(grille):
+        for y, char in enumerate(row):
+            if char == "X":
+                code += ciphered_password[x][y]
+                #       third iteration        #
+    flatgrille = (p[0] + p[1] + p[2] + p[3])[::-1]
+    f = ciphered_password
+    flatpass = f[0] + f[1] + f[2] + f[3]
+    z = zip(flatgrille, flatpass)
+    for x, y in z:
+        if x == "X":
+            code += y
+                #       fouth iteration        #
+    lastbits = bits[3][::-1] + bits [2][::-1] + bits[1][::-1] + bits[0][::-1]
+    lastbitz = (lastbits[0:4], lastbits[4:8], lastbits[8:12], lastbits[12:16])
+    for x, row in enumerate(lastbitz):
+        for y, char in enumerate(row):
+            if char == "X":
+                code += ciphered_password[x][y]
+    return code
