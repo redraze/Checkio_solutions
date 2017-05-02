@@ -1,0 +1,11 @@
+def verify_anagrams(first_word, second_word):
+    first_word = first_word.lower()
+    second_word = second_word.lower()
+    words = [first_word, second_word]
+    for word in words:
+        for i in word:
+            if i == " ":
+                continue
+            if second_word.count(i) != first_word.count(i):
+                return False
+    return True
