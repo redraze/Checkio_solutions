@@ -1,0 +1,7 @@
+def checkio(data):
+    new_list = []
+    for i in data:
+        f = list.count(data,i)
+        if f > 1:
+            list.append(new_list, i)
+    return new_list
