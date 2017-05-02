@@ -1,0 +1,31 @@
+def checkio(matrix):
+    enn = []
+    for row, values in list(enumerate(matrix)):
+        enn.append((row, list(enumerate(values))))
+    for row, entry in enn:
+        for pair in entry:
+            
+            if len(matrix) - pair[0] >= 4:                                       #right
+                if pair[1] == enn[row][1][pair[0] + 1][1]:
+                    if pair[1] == enn[row][1][pair[0] + 2][1]:
+                        if pair[1] == enn[row][1][pair[0] + 3][1]:
+                            return True
+                            
+            if len(matrix) - pair[0] >= 4 and len(matrix) - row >= 4:            #down right
+                if pair[1] == enn[row + 1][1][pair[0] + 1][1]:
+                    if pair[1] == enn[row + 2][1][pair[0] + 2][1]:
+                        if pair[1] == enn[row + 3][1][pair[0] + 3][1]:
+                            return True
+            
+            if len(matrix) - row >= 4:                                           #down
+                if pair[1] == enn[row + 1][1][pair[0]][1]:
+                    if pair[1] == enn[row + 2][1][pair[0]][1]:
+                        if pair[1] == enn[row + 3][1][pair[0]][1]:
+                            return True
+                            
+            if len(matrix) - row >= 4 and len(matrix) - pair[0] <= 3:            #down left
+                if pair[1] == enn[row + 1][1][pair[0] - 1][1]:
+                    if pair[1] == enn[row + 2][1][pair[0] - 2][1]:
+                        if pair[1] == enn[row + 3][1][pair[0] - 3][1]:
+                            return True
+    return False
