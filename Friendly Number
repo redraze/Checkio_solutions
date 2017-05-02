@@ -1,0 +1,14 @@
+def friendly_number(number,base=1000,decimals=0,suffix='',powers=['','k','M','G','T','P','E','Z','Y']):
+    num = float(number)
+    powers_count = 0
+    while abs(num) >= base:
+        num /= base
+        powers_count += 1
+        if powers_count == len(powers) - 1:
+            return str(int(num)) + powers[-1] + suffix
+    if decimals != 0:
+        if powers_count == 0:
+            return str(int(num)) + "." + ("0"*decimals) + suffix
+        else:
+            return str(round(num, decimals)) + ("0"*(decimals-1)) + powers[powers_count] + suffix
+    return str(int(num)) + powers[powers_count] + suffix
