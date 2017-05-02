@@ -1,0 +1,27 @@
+def min(*args, **kwargs):
+    key = kwargs.get("key", lambda x: x)
+    minvalue = None
+    if len(args) == 1:
+        iterable = args[0]
+    else:
+        iterable = args[:]
+    for i in iterable:
+        if minvalue == None:
+            minvalue = i
+        if key(i) < key(minvalue):
+            minvalue = i
+    return minvalue
+
+def max(*args, **kwargs):
+    key = kwargs.get("key", lambda x: x)
+    maxvalue = None
+    if len(args) == 1:
+        iterable = args[0]
+    else:
+        iterable = args[:]
+    for i in iterable:
+        if maxvalue == None:
+            maxvalue = i
+        if key(i) > key(maxvalue):
+            maxvalue = i
+    return maxvalue
