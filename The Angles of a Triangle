@@ -1,0 +1,9 @@
+from math import acos, degrees
+def checkio(a, b, c):
+    side = sorted([a, b, c])
+    if side[0] + side[1] <= side[2]:
+        return [0, 0, 0]
+    A = round(degrees(acos((b*b + c*c - a*a)/(2.0*b*c))))
+    B = round(degrees(acos((a*a + c*c - b*b)/(2.0*a*c))))
+    C = 180 - A - B
+    return sorted([A,B,C])
