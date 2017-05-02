@@ -1,0 +1,22 @@
+def checkio(maze_map):
+    route = ""
+    moves = {(1, 0): "S", (-1, 0): "N", (0, 1): "E", (0, -1): "W"}
+    pos = (2, 2)
+    moves_made = [pos]
+    goal = (11, 11)
+    count = 0
+    while pos != goal:
+        for move in moves:
+            if maze_map[pos[0] + move[0]][pos[1] + move[1]] in moves_made:      # check if new position has already been
+                continue
+            else:
+                if maze_map[pos[0] + move[0]][pos[1] + move[1]] == 0:
+                    pos = (pos[0] + move[0], pos[1] + move[1])
+                    route += moves(move)
+                break
+        if pos not in moves_made:
+            moves_made.append(pos)
+        count += 1
+        if count == 100:
+            return "your code sucks, dude", route
+    return route
