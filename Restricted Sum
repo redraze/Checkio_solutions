@@ -1,0 +1,8 @@
+def checkio(data):
+    return loop(data, 0)
+
+def loop(data, total):
+    total += data.pop()
+    if len(data) == 0:
+        return total
+    return loop(data, total)
