@@ -1,0 +1,8 @@
+def checkio(str_number, radix):
+    count = 0
+    for i in str_number:
+        if int(i, 36) < radix:
+            count += 1
+    if count == len(str_number):
+            return int(str_number, radix)
+    else: return -1
