@@ -1,0 +1,34 @@
+def checkio(first, second):
+    first = wordify(first)
+    second = wordify(second)
+    string = ""
+    for word in first:
+        if word in second:
+            if string != "":
+                string += ","
+                string += str(word)
+            if string == "":
+                string += str(word)
+    string = wordify(string)
+    string.sort()
+    THEFUGGINANSWER = ""
+    for word in string:              #there's gotta be a better way to do this
+        if THEFUGGINANSWER != "":
+            THEFUGGINANSWER += ","
+            THEFUGGINANSWER += word
+        else: 
+            THEFUGGINANSWER += word
+    return THEFUGGINANSWER
+
+###      MY LITTLE SUBROUTINE. SUBFIST /)      ###
+def wordify(word):
+    word += ","
+    word_list = []
+    string = ""
+    for i in word:
+        if 96 < ord(i) < 123:
+            string += i
+        if i == ",":
+            word_list.append(string)
+            string = ""
+    return word_list
