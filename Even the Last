@@ -1,0 +1,5 @@
+def checkio(array):
+    if len(array) == 0:
+        return 0
+    else:
+        return sum(array[::2])*array[-1]
