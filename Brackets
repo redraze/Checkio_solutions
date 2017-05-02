@@ -1,0 +1,20 @@
+def checkio(expression):
+    count = []
+    for i in expression:
+        if i in {'(', '[', '{'}:
+            count.append(i)
+        if i == ')':
+            if len(count) <= 0 or count[-1] != '(':
+                return False
+            count.pop()
+        if i == ']':
+            if len(count) <= 0 or count[-1] != '[':
+                return False
+            count.pop()
+        if i == '}':
+            if len(count) <= 0 or count[-1] != '{':
+                return False
+            count.pop()
+    if len(count) == 0:
+        return True
+    return False
