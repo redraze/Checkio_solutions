@@ -1,0 +1,30 @@
+def checkio(lines_list):
+    for i in lines_list:
+        i.sort()
+    count = 0
+    for [i, j] in lines_list:
+        if [i, j+3] in lines_list:
+            if [i+1, j+4] in lines_list:
+                if [i+4, j+4] in lines_list:
+                    count += 1
+        if [i, j+3] in lines_list:
+            if [i+1, j+1] in lines_list:
+                if [i+2, j+5] in lines_list:
+                    if [i+4, j+7] in lines_list:
+                        if [i+6, j+9] in lines_list:
+                            if [i+8, j+8] in lines_list:
+                                if [i+9, j+9] in lines_list:
+                                    count +=1
+        if [i, j+3] in lines_list:
+            if [i+4, j+7] in lines_list:
+                if [i+8, j+11] in lines_list:
+                    if [i+1, j+1] in lines_list:
+                        if [i+2, j+2] in lines_list:
+                            if [i+3, j+6] in lines_list:
+                                if [i+7, j+10] in lines_list:
+                                    if [i+11, j+14] in lines_list:
+                                        if [i+12, j+12] in lines_list:
+                                            if [i+13, j+13] in lines_list:
+                                                if [i+14, j+14] in lines_list:
+                                                    count += 1
+    return count
