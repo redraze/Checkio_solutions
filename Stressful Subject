@@ -1,0 +1,18 @@
+def is_stressful(subj):
+    if subj[-1]==subj[-2]==subj[-3]=="!":
+        return True
+    suubj = ""
+    for i in subj:
+        if i.isalpha() is True:
+            if len(suubj) == 0:
+                suubj += i
+            elif i != suubj[-1]:
+                suubj += i
+    suubj = suubj.lower()
+    if "help" in suubj:
+        return True
+    if "asap" in suubj:
+        return True
+    if "urgent" in suubj:
+        return True
+    return False
