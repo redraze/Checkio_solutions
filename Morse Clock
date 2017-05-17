@@ -1,0 +1,32 @@
+def checkio(time_string):
+    time_string = time_string.split(":")                #split integers within time_string into tuple based on ":"
+    
+    times = []
+    for i in time_string:                               #standardize format for all times to two digits
+        times.append(format(int(i), '02'))
+    
+    binary = []                                         #bringing the binary
+    binary.append(format(int(times[0][0]), '02b'))      #hours place 1
+    binary.append(format(int(times[0][1]), '04b'))      #hours place 2
+    binary.append(format(int(times[1][0]), '03b'))      #minutes place 1
+    binary.append(format(int(times[1][1]), '04b'))      #minutes place 2
+    binary.append(format(int(times[2][0]), '03b'))      #seconds place 1
+    binary.append(format(int(times[2][1]), '04b'))      #seconds place 2
+    
+    
+    binary = str(binary)
+    morse = ""
+    count = 0
+    for i in binary:
+        if i == '1':
+            morse += '-'
+        if i == '0':
+            morse += '.'
+        if i == ',':                                    #-- --- .-. ... .
+        if count < 2:                                   #-.-. --- -.. .
+                morse += ' '
+                count += 1
+            if count == 2:
+                morse += ': '
+                count = 0
+    return morse
