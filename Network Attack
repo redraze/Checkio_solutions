@@ -1,0 +1,22 @@
+def capture(matrix):
+    security = []
+    count = 0
+    while count < len(matrix):
+        security.append(matrix[count][count])
+        count += 1
+    access = matrix[0]
+    need = [0] * len(matrix)
+    ticks = list(range(0, len(matrix)))
+    time = 0
+    while need != security:
+        for i in ticks:
+            if security[i] == need[i]:
+                for j in ticks:
+                    if matrix[i][j] == 1:
+                        access[j] = 1
+        for i in ticks:
+            if access[i] == 1:
+                if security[i] != need[i]:
+                    need[i] += 1
+        time += 1
+    return time
