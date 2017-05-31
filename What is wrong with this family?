@@ -1,0 +1,15 @@
+def is_family(tree):
+    has_father = []
+    connected = [tree[0][0]]
+    for [father, son] in tree:
+        if [son, father] in tree:
+            return False
+        if son in has_father:
+            return False
+        has_father.append(son)
+        if father not in connected:
+            if son not in connected:
+                return False
+        connected.append(father)
+        connected.append(son)
+    return True
