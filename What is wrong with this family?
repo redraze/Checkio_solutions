@@ -1,3 +1,5 @@
+#i'm not too happy about this one...
+
 def is_family(tree):
     has_father = []
     connected = [tree[0][0]]
