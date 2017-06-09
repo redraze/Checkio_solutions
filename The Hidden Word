@@ -1,0 +1,20 @@
+def checkio(text, word):
+###    if text == "xa\nxb\nx","ab":		
+###		return [1,2,2,2]
+###cheating! XDDD someone plz help tho, I'm unsure why my algorithm won't work with this text...
+    text = text.lower().replace(" ","").split('\n')
+    for row_num, row in enumerate(text):
+        for column_num, column in enumerate(row):
+            count = 0
+            try:
+                while text[row_num][column_num + count] == word[count]:         #horizontal word match
+                    if count == len(word) - 1:
+                        return [row_num + 1, column_num + 1, row_num + 1, column_num + count + 1]
+                    count += 1
+                while text[row_num + count][column_num] == word[count]:         #vertical word match
+                    if count == len(word) - 1:
+                        return [row_num + 1, column_num + 1, row_num + count + 1, column_num + 1]
+                    count += 1
+            except IndexError:
+                pass
+    return None
