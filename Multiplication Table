@@ -1,0 +1,92 @@
+def checkio(first, second):
+    base_grid = bin_grid(first, second)
+    AND = AND_total(base_grid)
+    base_grid = bin_grid(first, second)
+    OR = OR_total(base_grid)
+    base_grid = bin_grid(first, second)
+    XOR = XOR_total(base_grid)
+    #for some reason the total doesn't calculate correctly unless the "base_grid" function is run before each "---_total" funtion
+    return AND + OR + XOR
+    
+#produce a grid from the two inputs converted to binary
+def bin_grid(first, second):
+    first = bin(first).split("b")[1]; second = bin(second).split("b")[1]
+    base_line = [(len(first) + 1)*[0]]*(len(second) + 1)
+    base_line = ["X"]
+    for i in second:
+        base_line.append(int(i))
+    base_grid = [[base_line]]
+    for i in first:
+        line = [0]*(len(second) + 1)
+        line[0] = int(i)
+        base_grid.append(line)
+    base_grid[0] = base_grid[0][0]
+    return base_grid
+    
+#change 0's to 1's based on appropriate AND/OR/XOR pattern
+def AND_total(grid):
+    for column, i in enumerate(grid[0]):
+        if i == 1:
+            for row, j in enumerate(grid):
+                if j[0] == 1:
+                    grid[row][column] = 1
+    total = grid_total(grid)
+    return total
+
+def OR_total(grid):
+    #change 0's to 1's based on TOP ROW
+    for column, i in enumerate(grid[0]):
+        if i == 1:
+            for row, j in enumerate(grid):
+                if row == 0:
+                    pass
+                else:
+                    grid[row][column] = 1
+    #change 0's to 1's based on LEFT HAND COLUMN
+    for row, i in enumerate(grid):
+        if i[0] == 1:
+            for column, j in enumerate(grid[row]):
+                grid[row][column] = 1
+    total = grid_total(grid)
+    return total
+    
+def XOR_total(grid):
+    #change 0's to 1's based on TOP ROW
+    for column, i in enumerate(grid[0]):
+        if i == 1:
+            for row, j in enumerate(grid):
+                if row == 0:
+                    pass
+                elif j[0] == 1:
+                    pass
+                else:
+                    grid[row][column] = 1
+    #change 0's to 1's based on LEFT HAND COLUMN
+    for row, i in enumerate(grid):
+        if i[0] == 1:
+            for column, j in enumerate(grid[row]):
+                if grid[0][column] == 1:
+                    pass
+                else:
+                    grid[row][column] = 1
+    total = grid_total(grid)
+    return total
+
+#calculate and sum decimal values of binary strings within specified grid
+def grid_total(grid):
+    total = 0
+    for row, i in enumerate(grid):
+        bin_str = ''
+        if row == 0:
+            pass
+        else:
+            for column, j in enumerate(i):
+                if column == 0:
+                    pass
+                else:
+                    bin_str += str(j)
+        if bin_str != '':
+            total += int(bin_str, 2)
+        else:
+            pass
+    return total
