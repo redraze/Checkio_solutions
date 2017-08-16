@@ -1,0 +1,14 @@
+def checkio(text):
+    
+    # count each letter and store in temp array
+    count = [0] * 26
+    for i in text:
+        if i.isalpha() == True:
+            count[ord(i.lower()) - 97] += 1
+            
+    # return max
+    for i in range(0, 26):
+        if count[i] == max(count):
+            return chr(i + 97)
+
+    raise SystemExit
