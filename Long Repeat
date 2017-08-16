@@ -1,0 +1,21 @@
+def long_repeat(line):
+    # break line into list of strings
+    strings = []
+    temp = ""
+    for i in range(0, len(line)):
+        temp += line[i]
+        try:
+            if line[i] != line[i + 1]:
+                strings.append(temp)
+                temp = ""
+        except IndexError:
+            strings.append(temp)
+            del temp
+    
+    # find longest string length
+    max_value = 0
+    for i in range(0, len(strings)):
+        if len(strings[i]) > max_value:
+            max_value = len(strings[i])
+    
+    return max_value
