@@ -1,0 +1,16 @@
+def count_words(text, words):
+    # format text
+    txt = ""
+    for i in range(0, len(text) - 1):
+        if text[i].isalpha() == True:
+            txt += text[i].lower()
+        else:
+            txt += text[i]
+    
+    # count occurences
+    count = 0
+    for word in words:
+        if word in txt:
+            count += 1
+    
+    return count
