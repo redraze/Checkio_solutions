@@ -1,0 +1,22 @@
+def check_connection(network, first, second):
+    # get direct connections to first
+    cons = []
+    for pair in network:
+        if first in pair:
+            for name in pair.split('-'):
+                cons.append(name)
+    
+    # get all extended conections to first
+    for con in cons:
+        for pair in network:
+            if con in pair:
+                for name in pair.split('-'):
+                    if name not in cons:
+                        cons.append(name)
+    
+    # check for connection to second
+    if second in cons:
+        return True
+    
+    # no connection
+    return False
