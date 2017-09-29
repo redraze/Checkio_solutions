@@ -1,0 +1,41 @@
+import re
+
+# define some lists of words
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+             "eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+              "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+              "eighty", "ninety"]
+
+# checks for zero, then passes number to recursive function
+def checkio(number):
+    if number == 0:
+        return "zero"
+    return check(number)
+    
+def check(num):
+    # for recursive calls
+    if num == 0:
+        return "\b"
+        
+    # for numbers less than ten
+    if num < 10:
+        return FIRST_TEN[num - 1]
+        
+    # for the teen's
+    if num < 20:
+        return SECOND_TEN[num - 10]
+    
+    # for numbers less than one hundred
+    if num < 100:
+        tens = int(str(num)[0])
+        return backspace(OTHER_TENS[tens - 2] + " " + check(num % 10))
+    
+    # for numbers less than one thousand
+    hundreds = int(str(num)[0])
+    return backspace(check(hundreds) + " hundred" + " " + check(num % 100))
+    
+# process backspaces
+def backspace(s):
+    return re.sub('.\b', '', s)
