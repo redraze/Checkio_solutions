@@ -1,17 +1,36 @@
-#i'm not too happy about this one...
-
 def is_family(tree):
+    
+    # establish that every person in tree is connected
+    cons = []
+    cons.append(tree[0][0])
+    act = 1
+    while act == 1:
+        act = 0
+        for [father,son] in tree:
+            if father in cons:
+                if son not in cons:
+                    cons.append(son)
+                    act = 1
+            if son in cons:
+                if father not in cons:
+                    cons.append(father)
+                    act = 1
+    
+    # check that each person in tree is connected
+    for [father,son] in tree:
+        if father not in cons:
+            return False
+        if son not in cons:
+            return False
+    
+    # check for proper father,son relationships
     has_father = []
-    connected = [tree[0][0]]
     for [father, son] in tree:
         if [son, father] in tree:
             return False
         if son in has_father:
             return False
         has_father.append(son)
-        if father not in connected:
-            if son not in connected:
-                return False
-        connected.append(father)
-        connected.append(son)
+                
+    # family tree is correct
     return True
