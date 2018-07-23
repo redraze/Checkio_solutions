@@ -1,0 +1,51 @@
+def longest_palindromic(text):
+    # create a place to store emerging answer and associated length
+    answer = {'length':1, 'palindromic':text[0]}
+    
+    # scan text for odd palindromics
+    answer = odds(answer, text)
+
+    # scan text for even palindromics
+    answer = evens(answer, text)
+
+    return answer['palindromic']
+    
+def odds(answer, text):
+    for i in range(0,len(text)):
+        for j in range(0,i+1):
+            try:
+                if text[i - j] != text[i + j]:
+                    palindromic = text[i-j+1:i+j]
+                    answer = evaluate_palindromic(palindromic, answer)
+                    break
+                if j == range(0,i+1)[-1]:
+                    palindromic = text[i-j:i+j+1]
+                    answer = evaluate_palindromic(palindromic, answer)
+            except IndexError:
+                palindromic = text[i-j+1:i+j]
+                answer = evaluate_palindromic(palindromic, answer)
+                break
+    return answer
+                
+def evens(answer, text):
+    for i in range(0,len(text)):
+        for j in range(0,1+1):
+            try:
+                if text[i-j] != text[i+j+1]:
+                    palindromic = text[i-j+1:i+j+1]
+                    answer = evaluate_palindromic(palindromic, answer)
+                    break
+                if j == range(0,i+1)[-1]:
+                    palindromic = text[i-j:i+j+2]
+                    answer = evaluate_palindromic(palindromic, answer)
+            except IndexError:
+                palindromic = text[i-j+1:i+j+1]
+                answer = evaluate_palindromic(palindromic, answer)
+                break
+    return answer
+
+def evaluate_palindromic(palindromic, answer):
+    if len(palindromic) > answer['length']:
+        answer['length'] = len(palindromic)
+        answer['palindromic'] = palindromic
+    return answer
